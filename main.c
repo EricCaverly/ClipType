@@ -174,7 +174,7 @@ int main() {
             clear_modifiers();
 
             // Fake keypress characters
-            fake_keypress(text, 1024, 30);
+            fake_keypress(text, 1024, 100);
         }
     }
 
