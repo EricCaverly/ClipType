@@ -173,6 +173,9 @@ int main() {
             // Clear modifiers
             clear_modifiers();
 
+            // let modifiers be raised
+            Sleep(20);
+
             // Fake keypress characters
             fake_keypress(text, 1024, 100);
         }
