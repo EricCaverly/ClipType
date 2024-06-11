@@ -151,6 +151,18 @@ void clear_modifiers() {
     SendInput(len, input, sizeof(INPUT));
 }
 
+void backspace_garbage(int count) {
+    INPUT input[2] = {0};
+    input[0].type = input[1].type = INPUT_KEYBOARD;
+    input[0].ki.wVk = input[1].ki.wVk = VK_BACK;
+    input[1].ki.dwFlags = KEYEVENTF_KEYUP;
+
+    for(int i=0; i<count; i++) {
+        SendInput(2, input, sizeof(INPUT));
+        Sleep(10);
+    }
+
+}
 
 int main() {
     // Try to register the hotkey
@@ -164,6 +176,7 @@ int main() {
     // Check for messages (blocking)
     while(GetMessage(&msg, NULL, 0, 0) != 0) {
         if (msg.message == WM_HOTKEY) {
+            printf("Paste Keypress Detected\n");
             // Clipboard Buffer
             char text[1024];
             if(!get_clipboard_contents_ascii(text, 1024)) {
@@ -173,11 +186,17 @@ int main() {
             // Clear modifiers
             clear_modifiers();
 
+            Sleep(20);
+
+            // Backspace alt key
+            backspace_garbage(3);
+
+    
             // let modifiers be raised
             Sleep(20);
 
             // Fake keypress characters
-            fake_keypress(text, 1024, 100);
+            fake_keypress(text, 1024, 80);
         }
     }
 
