@@ -1,5 +1,5 @@
 #include "ClipPaste.h"
-#include "Windows.h"
+#include <Windows.h>
 #include <minwindef.h>
 #include <synchapi.h>
 #include <winuser.h>

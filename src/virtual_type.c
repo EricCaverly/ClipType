@@ -1,5 +1,5 @@
 #include "ClipPaste.h"
-#include "Windows.h"
+#include <Windows.h>
 #include <minwindef.h>
 #include <synchapi.h>
 #include <winuser.h>
@@ -37,7 +37,7 @@ void lowercase_press(char key) {
 }
 
 
-void fake_keypress(char text[], int size, int delay_ms) {
+void word_keypress(char text[], int size, int delay_ms) {
     // Itterate through each character in text
     for(int i=0; i<size; i++) {
         // End once we reached string terminator
